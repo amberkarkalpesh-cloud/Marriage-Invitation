@@ -6,222 +6,148 @@
   <title>Ashish weds Deepika | Royal Wedding Invite</title>
   <link rel="preconnect" href="https://googleapis.com">
   <link rel="preconnect" href="https://gstatic.com" crossorigin>
-  <link href="https://googleapis.com/css2?family=Cinzel:wght@600;700&family=Great+Vibes&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://googleapis.com/css2?family=Cinzel:wght@600;700&family=Great+Vibes&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg-deep: #1b070c;
-      --royal-maroon: #6e1022;
-      --royal-emerald: #0d3b32;
-      --cream-card: #fffaf2;
-      --blush-tint: #fceef0;
+      --bg-deep: #1a060b;
+      --maroon: #6e1022;
+      --emerald: #0d3b32;
       --gold: #c6933b;
-      --gold-bright: #f7dc94;
+      --gold-light: #f7dc94;
       --text-dark: #2e1d14;
       --text-muted: #6b5344;
     }
-
     * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
-
-    html, body {
-      width: 100%;
-      height: 100%;
+    body {
       font-family: 'Poppins', sans-serif;
-      background: var(--bg-deep);
+      background: radial-gradient(circle at center, #380b15 0%, var(--bg-deep) 100%);
       color: var(--text-dark);
-      overflow: hidden;
-    }
-
-    .app-shell {
-      width: 100%;
-      max-width: 440px;
-      height: 100dvh;
-      margin: 0 auto;
-      position: relative;
-      background: linear-gradient(160deg, #fffdf9 0%, var(--blush-tint) 50%, #f5e6d0 100%);
-      box-shadow: 0 0 60px rgba(0,0,0,0.9);
-      overflow: hidden;
+      min-height: 100dvh;
       display: flex;
-      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 14px;
+      overflow: hidden;
     }
 
     /* Royal Velvet Curtains */
-    #curtain-stage {
-      position: absolute;
-      inset: 0;
-      z-index: 100;
-      display: flex;
-      transition: visibility 1.4s;
-    }
+    #curtain-stage { position: fixed; inset: 0; max-width: 440px; margin: 0 auto; z-index: 100; display: flex; transition: visibility 1.3s; }
     #curtain-stage.open { visibility: hidden; pointer-events: none; }
-
     .curtain {
-      width: 50%;
-      height: 100%;
-      background: repeating-linear-gradient(
-        90deg,
-        #520816 0px,
-        #7a1125 18px,
-        #4a0612 36px
-      );
-      border-bottom: 6px solid var(--gold-bright);
-      box-shadow: inset 0 0 45px rgba(0,0,0,0.75);
-      transition: transform 1.35s cubic-bezier(0.77, 0, 0.175, 1);
-      position: relative;
+      width: 50%; height: 100%;
+      background: repeating-linear-gradient(90deg, #520816 0px, #7a1125 18px, #4a0612 36px);
+      box-shadow: inset 0 0 40px rgba(0,0,0,0.75);
+      transition: transform 1.25s cubic-bezier(0.77, 0, 0.175, 1);
     }
-    .curtain.left { border-right: 3px solid var(--gold-bright); transform-origin: left; }
-    .curtain.right { border-left: 3px solid var(--gold-bright); transform-origin: right; }
+    .curtain.left { border-right: 3px solid var(--gold-light); }
+    .curtain.right { border-left: 3px solid var(--gold-light); }
     #curtain-stage.open .curtain.left { transform: translateX(-102%); }
     #curtain-stage.open .curtain.right { transform: translateX(102%); }
 
     #curtain-front {
-      position: absolute;
-      inset: 0;
-      z-index: 105;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: space-between;
-      padding: 40px 22px;
-      text-align: center;
-      color: #fff;
-      transition: opacity 0.45s ease;
+      position: absolute; inset: 0; z-index: 105;
+      display: flex; flex-direction: column; align-items: center; justify-content: space-between;
+      padding: 42px 20px; text-align: center; color: #fff; transition: opacity 0.4s;
     }
     #curtain-stage.open #curtain-front { opacity: 0; }
 
     .ganesh-ring {
-      width: 110px;
-      height: 110px;
-      border-radius: 50%;
-      border: 2.5px solid var(--gold-bright);
-      padding: 5px;
-      background: rgba(255,255,255,0.1);
-      margin: 14px auto;
-      box-shadow: 0 0 30px rgba(247, 220, 148, 0.5);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
+      width: 100px; height: 100px; border-radius: 50%; border: 2px solid var(--gold-light);
+      padding: 4px; background: rgba(255,255,255,0.1); margin: 12px auto;
+      display: flex; align-items: center; justify-content: center; overflow: hidden;
     }
     .ganesh-ring img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
 
     .curtain-btn {
-      background: linear-gradient(135deg, #f9e29c 0%, #c6933b 100%);
-      color: #361306;
-      border: 2px solid #fff6d6;
-      padding: 16px 34px;
-      border-radius: 50px;
-      font-family: 'Cinzel', serif;
-      font-weight: 700;
-      font-size: 14px;
-      letter-spacing: 1.5px;
-      cursor: pointer;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.6);
-      animation: pulseBtn 1.8s infinite;
+      background: linear-gradient(135deg, #f9e29c, #c6933b); color: #361306;
+      border: 2px solid #fff6d6; padding: 14px 30px; border-radius: 50px;
+      font-family: 'Cinzel', serif; font-weight: 700; font-size: 13.5px; letter-spacing: 1.5px;
+      cursor: pointer; box-shadow: 0 8px 25px rgba(0,0,0,0.6); animation: pulse 1.8s infinite;
     }
-    @keyframes pulseBtn { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.07); } }
-    /* Step-by-Step Window Pages */
-    .window-screen {
-      position: absolute;
-      inset: 14px;
-      border: 2px solid var(--gold);
-      border-radius: 22px;
-      background: rgba(255, 253, 249, 0.94);
-      box-shadow: 0 12px 35px rgba(110, 16, 34, 0.14);
+    @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.06); } }
+
+    /* Compact Centered Window Cards (No Empty Space!) */
+    .card-wrapper { width: 100%; max-width: 410px; position: relative; }
+    .window-card {
+      display: none;
+      background: linear-gradient(165deg, #fffdf9 0%, #fcf0f2 55%, #f6e7d2 100%);
+      border: 2.5px solid var(--gold);
+      border-radius: 24px;
       padding: 24px 18px 20px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
       text-align: center;
-      overflow-y: auto;
-      opacity: 0;
-      transform: scale(0.88) translateY(25px);
-      pointer-events: none;
-      transition: all 0.65s cubic-bezier(0.22, 1, 0.36, 1);
-      z-index: 10;
+      box-shadow: 0 15px 45px rgba(0,0,0,0.65), inset 0 0 0 4px rgba(198,147,59,0.2);
+      animation: cardPop 0.55s cubic-bezier(0.22, 1, 0.36, 1) forwards;
     }
+    .window-card.active { display: block; }
+    @keyframes cardPop { from { opacity: 0; transform: scale(0.9) translateY(15px); } to { opacity: 1; transform: scale(1) translateY(0); } }
 
-    .window-screen.active {
-      opacity: 1;
-      transform: scale(1) translateY(0);
-      pointer-events: auto;
-      z-index: 20;
-    }
-
-    .mantra { font-family: 'Cinzel', serif; font-size: 12px; letter-spacing: 1.5px; color: var(--royal-maroon); font-weight: 700; }
-    .heading-serif { font-family: 'Cinzel', serif; color: var(--royal-maroon); font-size: 20px; font-weight: 700; letter-spacing: 1px; margin-bottom: 6px; }
-    .divider { display: flex; align-items: center; justify-content: center; gap: 10px; margin: 10px 0; color: var(--gold); }
-    .divider::before, .divider::after { content: ""; height: 1px; width: 50px; background: var(--gold); }
+    .mantra { font-family: 'Cinzel', serif; font-size: 11.5px; letter-spacing: 1.5px; color: var(--maroon); font-weight: 700; }
+    .heading-serif { font-family: 'Cinzel', serif; color: var(--maroon); font-size: 19px; font-weight: 700; letter-spacing: 1px; }
+    .divider { display: flex; align-items: center; justify-content: center; gap: 8px; margin: 10px 0; color: var(--gold); font-size: 12px; }
+    .divider::before, .divider::after { content: ""; height: 1px; width: 45px; background: var(--gold); }
 
     .couple-shimmer {
-      font-family: 'Great Vibes', cursive;
-      font-size: 54px;
-      line-height: 1.15;
+      font-family: 'Great Vibes', cursive; font-size: 48px; line-height: 1.1;
       background: linear-gradient(90deg, #8a152b, #d49b35, #8a152b);
-      background-size: 200% auto;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+      background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent;
       animation: goldFlow 3s linear infinite;
     }
     @keyframes goldFlow { to { background-position: 200% center; } }
+    .with-badge { display: inline-block; font-family: 'Cinzel', serif; font-size: 11px; letter-spacing: 4px; color: var(--emerald); border-top: 1px solid var(--gold); border-bottom: 1px solid var(--gold); padding: 2px 12px; margin: 2px 0; }
 
-    .with-badge {
-      display: inline-block;
-      font-family: 'Cinzel', serif;
-      font-size: 12px;
-      letter-spacing: 4px;
-      color: var(--royal-emerald);
-      border-top: 1px solid var(--gold);
-      border-bottom: 1px solid var(--gold);
-      padding: 2px 14px;
-      margin: 4px 0;
+    .host-names { font-family: 'Cinzel', serif; font-size: 13.5px; font-weight: 700; color: var(--text-dark); line-height: 1.35; }
+    .sub-text { font-size: 11px; color: var(--text-muted); line-height: 1.4; margin-top: 3px; }
+    .invite-msg { font-style: italic; font-size: 12px; color: var(--text-muted); margin: 10px 0; }
+
+    /* Hidden Secret Date Box */
+    .secret-box {
+      background: linear-gradient(135deg, var(--maroon), #8f162d);
+      color: #fff; border: 2px solid var(--gold-light); border-radius: 18px;
+      padding: 22px 14px; margin: 12px 0; cursor: pointer;
+      box-shadow: 0 8px 20px rgba(110, 16, 34, 0.3);
     }
-
-    .host-names { font-family: 'Cinzel', serif; font-size: 14.5px; font-weight: 700; color: var(--text-dark); line-height: 1.4; }
-    .sub-text { font-size: 11.5px; color: var(--text-muted); line-height: 1.45; margin-top: 3px; }
-    .invite-msg { font-style: italic; font-size: 12.5px; color: var(--text-muted); margin: 10px 0; }
-
-    /* Tassel Reveal */
-    .tassel-box { background: linear-gradient(180deg, #fff8eb, #f7e6c8); border: 1.5px dashed var(--gold); border-radius: 16px; padding: 18px 12px; margin: 10px 0; cursor: pointer; }
-    .rod { height: 7px; width: 150px; margin: 0 auto; background: var(--gold); border-radius: 10px; }
-    .tassel-line { width: 3px; height: 34px; background: var(--royal-maroon); margin: 0 auto; transition: height 0.3s; }
-    .tassel-ball { width: 36px; height: 36px; background: var(--royal-maroon); color: var(--gold-bright); border: 2px solid var(--gold-bright); border-radius: 50%; margin: -4px auto 0; display: flex; align-items: center; justify-content: center; animation: bounce 1.4s infinite; }
-    @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(7px); } }
-
-    .date-reveal { display: none; animation: popScale 0.6s ease forwards; }
-    .date-reveal.show { display: block; }
-    @keyframes popScale { from { opacity: 0; transform: scale(0.85); } to { opacity: 1; transform: scale(1); } }
+    .seal-icon {
+      width: 52px; height: 52px; border-radius: 50%; background: var(--gold-light); color: var(--maroon);
+      font-size: 22px; display: flex; align-items: center; justify-content: center; margin: 0 auto 10px;
+      box-shadow: 0 0 15px rgba(247,220,148,0.6); animation: pulse 1.5s infinite;
+    }
+    .date-revealed { display: none; animation: cardPop 0.5s ease forwards; }
+    .date-revealed.show { display: block; }
 
     .countdown-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; margin: 12px 0; }
-    .cd-cell { background: var(--royal-emerald); color: #fff; border-radius: 10px; padding: 8px 2px; border: 1px solid var(--gold); }
-    .cd-num { font-family: 'Cinzel', serif; font-size: 17px; font-weight: 700; color: var(--gold-bright); }
-    .cd-lbl { font-size: 9px; text-transform: uppercase; opacity: 0.85; }
+    .cd-cell { background: var(--emerald); color: #fff; border-radius: 10px; padding: 8px 2px; border: 1px solid var(--gold); }
+    .cd-num { font-family: 'Cinzel', serif; font-size: 17px; font-weight: 700; color: var(--gold-light); }
+    .cd-lbl { font-size: 9px; text-transform: uppercase; }
 
-    /* Event Cards */
-    .event-pill { background: #fff; border: 1.5px solid var(--gold); border-radius: 14px; padding: 12px; margin-bottom: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.04); }
-    .event-pill.haldi { background: linear-gradient(135deg, #fffdf0, #fff2bd); }
-    .event-pill.main { background: linear-gradient(135deg, #fff7f8, #fce3e8); }
-
-    /* Navigation & Action Buttons */
-    .nav-bar { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-top: 12px; padding-top: 10px; border-top: 1px solid rgba(198, 147, 59, 0.3); }
-    .nav-btn {
-      flex: 1;
-      background: linear-gradient(135deg, var(--royal-maroon), #961830);
-      color: #fff;
-      border: 1px solid var(--gold-bright);
-      padding: 11px 14px;
-      border-radius: 30px;
-      font-family: 'Cinzel', serif;
-      font-size: 12px;
-      font-weight: 600;
-      cursor: pointer;
-      box-shadow: 0 4px 14px rgba(110, 16, 34, 0.3);
+    /* Two-Color Function Slides */
+    .slides-track { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 10px; padding: 6px 2px 10px; scrollbar-width: none; }
+    .slides-track::-webkit-scrollbar { display: none; }
+    .slide-box {
+      flex: 0 0 92%; scroll-snap-align: center; border-radius: 16px; padding: 16px 12px;
+      border: 1.5px solid var(--gold); box-shadow: 0 6px 15px rgba(0,0,0,0.08);
     }
-    .nav-btn.back { background: transparent; color: var(--royal-maroon); border: 1.5px solid var(--royal-maroon); box-shadow: none; flex: 0.45; }
-    .map-btn { display: inline-block; background: var(--royal-emerald); color: #fff; border: none; padding: 10px 18px; border-radius: 25px; font-size: 12px; font-weight: 500; margin: 6px 3px; cursor: pointer; text-decoration: none; }
+    /* Color 1: Royal Haldi Gold */
+    .slide-box.color-one { background: linear-gradient(135deg, #fffbe6 0%, #ffe699 100%); color: #4a3200; }
+    /* Color 2: Royal Emerald & Maroon Contrast */
+    .slide-box.color-two { background: linear-gradient(135deg, #0d3b32 0%, #16594c 100%); color: #fff; }
+    .slide-box.color-two .s-title { color: var(--gold-light); }
 
-    #music-toggle { position: fixed; top: 20px; right: 20px; z-index: 90; width: 38px; height: 38px; border-radius: 50%; background: var(--royal-maroon); color: var(--gold-bright); border: 1.5px solid var(--gold-bright); display: none; cursor: pointer; }
+    .s-tag { display: inline-block; font-size: 9.5px; text-transform: uppercase; letter-spacing: 1.5px; padding: 3px 10px; border-radius: 20px; background: var(--maroon); color: #fff; margin-bottom: 6px; }
+    .s-title { font-family: 'Cinzel', serif; font-size: 17px; font-weight: 700; color: var(--maroon); margin-bottom: 4px; }
+
+    /* Buttons */
+    .nav-bar { display: flex; gap: 8px; margin-top: 16px; padding-top: 12px; border-top: 1px solid rgba(198,147,59,0.3); }
+    .nav-btn {
+      flex: 1; background: linear-gradient(135deg, var(--maroon), #961830); color: #fff;
+      border: 1px solid var(--gold-light); padding: 11px 12px; border-radius: 30px;
+      font-family: 'Cinzel', serif; font-size: 11.5px; font-weight: 600; cursor: pointer;
+    }
+    .nav-btn.back { flex: 0.4; background: transparent; color: var(--maroon); border: 1.5px solid var(--maroon); }
+    .pill-btn { background: var(--emerald); color: #fff; border: none; padding: 8px 14px; border-radius: 20px; font-size: 11.5px; margin: 4px 2px; cursor: pointer; }
+
+    #music-toggle { position: fixed; top: 16px; right: 16px; z-index: 90; width: 36px; height: 36px; border-radius: 50%; background: var(--maroon); color: var(--gold-light); border: 1.5px solid var(--gold-light); display: none; cursor: pointer; }
     #petals-canvas { position: fixed; inset: 0; pointer-events: none; z-index: 85; }
-    #toast { position: fixed; bottom: 75px; left: 50%; transform: translateX(-50%); background: var(--royal-emerald); color: #fff; padding: 8px 18px; border-radius: 20px; font-size: 12px; opacity: 0; transition: opacity 0.3s; z-index: 200; }
+    #toast { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: var(--emerald); color: #fff; padding: 8px 16px; border-radius: 20px; font-size: 11.5px; opacity: 0; transition: opacity 0.3s; z-index: 200; }
   </style>
 </head>
 <body>
@@ -234,180 +160,167 @@
     <source src="https://pixabay.com" type="audio/mpeg">
   </audio>
 
-  <div class="app-shell">
-
-    <div id="curtain-stage">
-      <div class="curtain left"></div>
-      <div class="curtain right"></div>
-
-      <div id="curtain-front">
-        <div>
-          <div style="font-family: 'Cinzel', serif; font-size: 13px; letter-spacing: 2px; color: var(--gold-bright);">
-            || OM SHREE GANESHAY NAMAH ||
-          </div>
-          <div class="ganesh-ring">
-            <img src="ganpati.png" alt="Ganpati Bappa" onerror="this.style.display='none'; this.parentElement.innerHTML='<span style=\'font-size:44px;color:#f7dc94;\'>ॐ</span>';">
-          </div>
+  <div id="curtain-stage">
+    <div class="curtain left"></div>
+    <div class="curtain right"></div>
+    <div id="curtain-front">
+      <div>
+        <div style="font-family: 'Cinzel', serif; font-size: 12.5px; letter-spacing: 2px; color: var(--gold-light);">
+          || OM SHREE GANESHAY NAMAH ||
         </div>
-
-        <div>
-          <div style="font-family: 'Cinzel', serif; font-size: 13px; letter-spacing: 3px; color: #f7dc94; margin-bottom: 8px;">
-            ROYAL WEDDING INVITATION
-          </div>
-          <div style="font-family: 'Great Vibes', cursive; font-size: 56px; color: #fff; line-height: 1.1; text-shadow: 0 4px 15px rgba(0,0,0,0.6);">
-            Ashish<br><span style="font-size: 26px; font-family: 'Cinzel', serif; letter-spacing: 5px; color: var(--gold-bright);">WEDS</span><br>Deepika
-          </div>
+        <div class="ganesh-ring">
+          <img src="ganpati.png" alt="Ganpati" onerror="this.style.display='none'; this.parentElement.innerHTML='<span style=\'font-size:40px;color:#f7dc94;\'>ॐ</span>';">
         </div>
+      </div>
 
-        <div>
-          <p style="font-size: 11.5px; color: #f7dc94; margin-bottom: 14px; letter-spacing: 1.5px;">
-            4TH DECEMBER 2026 • MUMBAI
-          </p>
-          <button class="curtain-btn" onclick="openCurtains()">✨ OPEN CURTAINS ✨</button>
+      <div>
+        <div style="font-family: 'Cinzel', serif; font-size: 12px; letter-spacing: 3px; color: #f7dc94; margin-bottom: 6px;">
+          ROYAL WEDDING INVITATION
         </div>
+        <div style="font-family: 'Great Vibes', cursive; font-size: 52px; color: #fff; line-height: 1.1;">
+          Ashish<br><span style="font-size: 22px; font-family: 'Cinzel', serif; letter-spacing: 4px; color: var(--gold-light);">WEDS</span><br>Deepika
+        </div>
+      </div>
+
+      <button class="curtain-btn" onclick="openCurtains()">✨ OPEN INVITATION ✨</button>
+    </div>
+  </div>
+
+  <div class="card-wrapper">
+
+    <!-- Window 1: Main Invitation -->
+    <div class="window-card active" id="win-1">
+      <div class="mantra">|| Om Shree Ganeshay Namah ||</div>
+      <div class="divider">❖</div>
+
+      <div class="host-names">Shri Harinath Chandrabali Yadav<br>&amp; Smt. Vidyadevi Yadav</div>
+      <div class="sub-text">(203/5, Deep-City CHS, Usarli, Khurd, New Panvel - 410206.)</div>
+
+      <p class="invite-msg">Request the pleasure of your company on the auspicious occasion of the wedding ceremony of</p>
+
+      <div class="couple-shimmer">Ashish</div>
+      <div class="with-badge">WITH</div>
+      <div class="couple-shimmer">Deepika</div>
+
+      <div class="host-names" style="font-size: 12.5px; margin-top: 6px;">(D/o. Late Shri Premnath Yadav &amp; Smt. Savitri Yadav)</div>
+      <div class="sub-text">B Wing, 3rd Floor, Room No. 16, Jai Kulswamini Building, Reti Bunder Cross Road, Near Gaon Devi Temple, Dombivli (W)</div>
+
+      <div class="nav-bar">
+        <button class="nav-btn" onclick="showWin(2)">Next: Reveal Wedding Date →</button>
       </div>
     </div>
 
-    <div class="window-screen active" id="win-1">
-      <div>
-        <div class="mantra">|| Om Shree Ganeshay Namah ||</div>
-        <div class="divider">❖</div>
+    <!-- Window 2: Hidden Date & Live Countdown -->
+    <div class="window-card" id="win-2">
+      <div class="heading-serif">Save The Date</div>
+      <div class="divider">❖</div>
 
-        <div class="host-names">
-          Shri Harinath Chandrabali Yadav<br>&amp; Smt. Vidyadevi Yadav
+      <div id="secret-trigger" class="secret-box" onclick="revealSecretDate()">
+        <div class="seal-icon">🔒</div>
+        <div style="font-family: 'Cinzel', serif; font-size: 15px; font-weight: 700; color: var(--gold-light);">
+          Tap to Unlock Wedding Date
         </div>
-        <div class="sub-text">
-          (203/5, Deep-City CHS, Usarli, Khurd, New Panvel - 410206.)
+        <div style="font-size: 11px; opacity: 0.85; margin-top: 4px;">
+          See exact date &amp; live countdown timer
+        </div>
+      </div>
+
+      <div id="secret-date-box" class="date-revealed">
+        <div style="font-family: 'Cinzel', serif; font-size: 20px; font-weight: 700; color: var(--maroon); margin-top: 6px;">
+          Friday, 4th December 2026
+        </div>
+        <div class="sub-text">Paras Banquet Hall, Mira Road (E)</div>
+
+        <div class="countdown-row">
+          <div class="cd-cell"><div class="cd-num" id="d">00</div><div class="cd-lbl">Days</div></div>
+          <div class="cd-cell"><div class="cd-num" id="h">00</div><div class="cd-lbl">Hours</div></div>
+          <div class="cd-cell"><div class="cd-num" id="m">00</div><div class="cd-lbl">Mins</div></div>
+          <div class="cd-cell"><div class="cd-num" id="s">00</div><div class="cd-lbl">Secs</div></div>
         </div>
 
-        <p class="invite-msg">
-          Request the pleasure of your company on the auspicious occasion of the wedding ceremony of
-        </p>
+        <button class="pill-btn" onclick="saveCalendar()">📅 Save to Calendar</button>
+      </div>
 
-        <div class="couple-shimmer">Ashish</div>
-        <div class="with-badge">WITH</div>
-        <div class="couple-shimmer">Deepika</div>
+      <div class="nav-bar">
+        <button class="nav-btn back" onclick="showWin(1)">← Back</button>
+        <button class="nav-btn" onclick="showWin(3)">Next: Functions &amp; Venue →</button>
+      </div>
+    </div>
 
-        <div class="host-names" style="font-size: 13.5px; margin-top: 8px;">
-          (D/o. Late Shri Premnath Yadav &amp; Smt. Savitri Yadav)
+    <!-- Window 3: Two-Color Slides & Venue -->
+    <div class="window-card" id="win-3">
+      <div class="heading-serif">Wedding Functions</div>
+      <div style="font-size: 10.5px; color: var(--text-muted); margin-bottom: 6px;">← Swipe slides left or right →</div>
+
+      <div class="slides-track">
+        <div class="slide-box color-one">
+          <span class="s-tag">Pre-Wedding</span>
+          <div class="s-title">🌼 Haldi Ceremony</div>
+          <div style="font-size: 13px; font-weight: 600;">Wednesday, 2nd December 2026</div>
         </div>
-        <div class="sub-text">
-          B Wing, 3rd Floor, Room No. 16, Jai Kulswamini Building,<br>
-          Reti Bunder Cross Road, Near Gaon Devi Temple, Dombivli (W)
+
+        <div class="slide-box color-two">
+          <span class="s-tag" style="background: var(--gold); color: #2b1104;">Main Celebration</span>
+          <div class="s-title">🥂 Reception &amp; Dinner</div>
+          <div style="font-size: 12.5px;">Friday, 4th December 2026</div>
+          <div style="font-size: 13px; font-weight: 600; color: var(--gold-light); margin-top: 2px;">7:00 PM to 10:00 PM</div>
+        </div>
+
+        <div class="slide-box color-one">
+          <span class="s-tag">Sacred Ritual</span>
+          <div class="s-title">🔥 Lagan Muhurat</div>
+          <div style="font-size: 12.5px;">Friday, 4th December 2026</div>
+          <div style="font-size: 13px; font-weight: 600; color: var(--maroon); margin-top: 2px;">11:00 PM to 2:10 AM</div>
+        </div>
+      </div>
+
+      <div style="background: #fff; border: 1.5px solid var(--gold); border-radius: 14px; padding: 10px; margin-top: 6px;">
+        <div style="font-family: 'Cinzel', serif; font-weight: 700; color: var(--emerald); font-size: 13.5px;">📍 Paras Banquet Hall</div>
+        <div class="sub-text">New Penkarpada Road, Next to Nexa Service Centre, Mira Road (E) - 401107.</div>
+        <div style="margin-top: 6px;">
+          <button class="pill-btn" onclick="openGoogleMap()">🗺️ Get Directions</button>
+          <button class="pill-btn" style="background: var(--maroon);" onclick="copyAddr()">📋 Copy</button>
         </div>
       </div>
 
       <div class="nav-bar">
-        <button class="nav-btn" onclick="goToWin(2)">Next: Save The Date →</button>
+        <button class="nav-btn back" onclick="showWin(2)">← Back</button>
+        <button class="nav-btn" onclick="showWin(4)">Next: Family &amp; Blessings →</button>
       </div>
     </div>
 
-    <div class="window-screen" id="win-2">
-      <div>
-        <div class="heading-serif">Save The Date</div>
-        <div class="divider">❖</div>
+    <!-- Window 4: Family & Blessings -->
+    <div class="window-card" id="win-4">
+      <div class="heading-serif">Family &amp; Blessings</div>
+      <div class="divider">❖</div>
 
-        <div id="tassel-trigger" class="tassel-box" onclick="pullTassel()">
-          <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 10px;">
-            Tap the Royal Gold Tassel to Reveal Wedding Date
-          </p>
-          <div class="rod"></div>
-          <div class="tassel-line" id="tassel-line"></div>
-          <div class="tassel-ball">▼</div>
-        </div>
+      <div style="margin-bottom: 10px;">
+        <div style="font-family: 'Cinzel', serif; font-size: 12.5px; font-weight: 700; color: var(--maroon);">Blessings From:</div>
+        <div style="font-size: 13px;">Shrilal Yadav, Surendra Yadav</div>
+      </div>
 
-        <div id="date-content" class="date-reveal">
-          <div style="font-family: 'Cinzel', serif; font-size: 21px; font-weight: 700; color: var(--royal-maroon); margin: 8px 0;">
-            Friday, 4th December 2026
-          </div>
-          <p class="sub-text">Paras Banquet Hall, Mira Road (E)</p>
+      <div style="margin-bottom: 10px;">
+        <div style="font-family: 'Cinzel', serif; font-size: 12.5px; font-weight: 700; color: var(--maroon);">Love From:</div>
+        <div style="font-size: 12.5px; line-height: 1.45;">Gaurav Yadav, Himanshu Yadav, Vinay Yadav,<br>Rishabh Yadav, Vishal Yadav, Mehul Yadav</div>
+      </div>
 
-          <div class="countdown-row">
-            <div class="cd-cell"><div class="cd-num" id="d">00</div><div class="cd-lbl">Days</div></div>
-            <div class="cd-cell"><div class="cd-num" id="h">00</div><div class="cd-lbl">Hours</div></div>
-            <div class="cd-cell"><div class="cd-num" id="m">00</div><div class="cd-lbl">Mins</div></div>
-            <div class="cd-cell"><div class="cd-num" id="s">00</div><div class="cd-lbl">Secs</div></div>
-          </div>
+      <div style="margin-bottom: 10px;">
+        <div style="font-family: 'Cinzel', serif; font-size: 12.5px; font-weight: 700; color: var(--maroon);">Little Hearts:</div>
+        <div style="font-size: 13px;">Anushka, Palak, Manvitha, Rudransh</div>
+      </div>
 
-          <button class="map-btn" onclick="saveCalendar()">📅 Add to Calendar</button>
-        </div>
+      <div style="font-family: 'Great Vibes', cursive; font-size: 36px; color: var(--gold); margin-top: 8px;">
+        Awaiting Your Presence!
       </div>
 
       <div class="nav-bar">
-        <button class="nav-btn back" onclick="goToWin(1)">← Back</button>
-        <button class="nav-btn" onclick="goToWin(3)">Next: Functions &amp; Venue →</button>
-      </div>
-    </div>
-
-    <div class="window-screen" id="win-3">
-      <div>
-        <div class="heading-serif">Wedding Festivities</div>
-
-        <div class="event-pill haldi">
-          <div style="font-family: 'Cinzel', serif; font-weight: 700; color: var(--royal-maroon); font-size: 15px;">🌼 Haldi Ceremony</div>
-          <div style="font-size: 12.5px; font-weight: 500;">Wednesday, 2nd December 2026</div>
-        </div>
-
-        <div class="event-pill main">
-          <div style="font-family: 'Cinzel', serif; font-weight: 700; color: var(--royal-maroon); font-size: 15px;">🥂 Reception &amp; Dinner</div>
-          <div style="font-size: 12.5px;">Friday, 4th December 2026 • <b>7:00 PM - 10:00 PM</b></div>
-        </div>
-
-        <div class="event-pill main">
-          <div style="font-family: 'Cinzel', serif; font-weight: 700; color: var(--royal-maroon); font-size: 15px;">🔥 Lagan Muhurat</div>
-          <div style="font-size: 12.5px;">Friday, 4th December 2026 • <b>11:00 PM - 2:10 AM</b></div>
-        </div>
-
-        <div style="background: #fff; border: 1.5px solid var(--gold); border-radius: 14px; padding: 12px; margin-top: 8px;">
-          <div style="font-family: 'Cinzel', serif; font-weight: 700; color: var(--royal-emerald); font-size: 14px;">📍 Paras Banquet Hall</div>
-          <div class="sub-text">New Penkarpada Road, Next to Nexa Service Centre, Mira Road (E) - 401107.</div>
-          <div style="margin-top: 6px;">
-            <button class="map-btn" onclick="openGoogleMap()">🗺️ Get Directions</button>
-            <button class="map-btn" style="background: var(--royal-maroon);" onclick="copyAddr()">📋 Copy</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="nav-bar">
-        <button class="nav-btn back" onclick="goToWin(2)">← Back</button>
-        <button class="nav-btn" onclick="goToWin(4)">Next: Family &amp; Blessings →</button>
-      </div>
-    </div>
-
-    <div class="window-screen" id="win-4">
-      <div>
-        <div class="heading-serif">Family &amp; Blessings</div>
-        <div class="divider">❖</div>
-
-        <div style="margin-bottom: 14px;">
-          <div style="font-family: 'Cinzel', serif; font-size: 13px; font-weight: 700; color: var(--royal-maroon);">Blessings From:</div>
-          <div style="font-size: 13.5px; margin-top: 2px;">Shrilal Yadav, Surendra Yadav</div>
-        </div>
-
-        <div style="margin-bottom: 14px;">
-          <div style="font-family: 'Cinzel', serif; font-size: 13px; font-weight: 700; color: var(--royal-maroon);">Love From:</div>
-          <div style="font-size: 13px; line-height: 1.5; margin-top: 2px;">
-            Gaurav Yadav, Himanshu Yadav, Vinay Yadav,<br>Rishabh Yadav, Vishal Yadav, Mehul Yadav
-          </div>
-        </div>
-
-        <div style="margin-bottom: 14px;">
-          <div style="font-family: 'Cinzel', serif; font-size: 13px; font-weight: 700; color: var(--royal-maroon);">Little Hearts:</div>
-          <div style="font-size: 13.5px; margin-top: 2px;">Anushka, Palak, Manvitha, Rudransh</div>
-        </div>
-
-        <div style="font-family: 'Great Vibes', cursive; font-size: 40px; color: var(--gold); margin-top: 14px;">
-          Awaiting Your Presence!
-        </div>
-      </div>
-
-      <div class="nav-bar">
-        <button class="nav-btn back" onclick="goToWin(3)">← Back</button>
-        <button class="nav-btn" onclick="goToWin(1)">↺ Replay Invitation</button>
+        <button class="nav-btn back" onclick="showWin(3)">← Back</button>
+        <button class="nav-btn" onclick="showWin(1)">↺ Replay</button>
       </div>
     </div>
 
   </div>
+
   <script>
     let musicPlaying = false;
     const bgMusic = document.getElementById('bg-music');
@@ -421,56 +334,40 @@
     }
 
     function toggleMusic() {
-      if (musicPlaying) {
-        bgMusic.pause();
-        musicBtn.innerText = '🔇';
-        musicPlaying = false;
-      } else {
-        bgMusic.play();
-        musicBtn.innerText = '🔊';
-        musicPlaying = true;
-      }
+      if (musicPlaying) { bgMusic.pause(); musicBtn.innerText = '🔇'; musicPlaying = false; }
+      else { bgMusic.play(); musicBtn.innerText = '🔊'; musicPlaying = true; }
     }
 
-    function goToWin(num) {
-      document.querySelectorAll('.window-screen').forEach(w => w.classList.remove('active'));
+    function showWin(num) {
+      document.querySelectorAll('.window-card').forEach(c => c.classList.remove('active'));
       document.getElementById('win-' + num).classList.add('active');
     }
 
-    function pullTassel() {
-      const line = document.getElementById('tassel-line');
-      line.style.height = '65px';
-      setTimeout(() => {
-        document.getElementById('tassel-trigger').style.display = 'none';
-        document.getElementById('date-content').classList.add('show');
-      }, 280);
+    function revealSecretDate() {
+      document.getElementById('secret-trigger').style.display = 'none';
+      document.getElementById('secret-date-box').classList.add('show');
     }
 
     function openGoogleMap() {
-      const domain = "https://www.google" + ".com/maps/search/?api=1&query=";
-      const destination = encodeURIComponent("Paras Banquet Hall, New Penkarpada Road, Mira Road East");
-      window.open(domain + destination, "_blank");
+      const url = "https://www.google" + ".com/maps/search/?api=1&query=" + encodeURIComponent("Paras Banquet Hall, New Penkarpada Road, Mira Road East");
+      window.open(url, "_blank");
     }
 
     function saveCalendar() {
-      const calDomain = "https://calendar.google" + ".com/calendar/render?action=TEMPLATE";
-      const details = "&text=Ashish+%26+Deepika+Wedding&dates=20261204T133000Z/20261204T204000Z&location=Paras+Banquet+Hall+Mira+Road+East";
-      window.open(calDomain + details, "_blank");
+      const url = "https://calendar.google" + ".com/calendar/render?action=TEMPLATE&text=Ashish+%26+Deepika+Wedding&dates=20261204T133000Z/20261204T204000Z&location=Paras+Banquet+Hall+Mira+Road+East";
+      window.open(url, "_blank");
     }
 
     function copyAddr() {
-      const addr = "Paras Banquet Hall, New Penkarpada Road, Next to Nexa Service Centre, Mira Road (E) - 401107.";
-      navigator.clipboard.writeText(addr);
+      navigator.clipboard.writeText("Paras Banquet Hall, New Penkarpada Road, Next to Nexa Service Centre, Mira Road (E) - 401107.");
       const toast = document.getElementById('toast');
       toast.style.opacity = '1';
-      setTimeout(() => { toast.style.opacity = '0'; }, 2200);
+      setTimeout(() => { toast.style.opacity = '0'; }, 2000);
     }
 
-    // Countdown Timer to Dec 4, 2026 7:00 PM
     const targetDate = new Date("December 4, 2026 19:00:00").getTime();
     setInterval(() => {
-      const now = new Date().getTime();
-      const gap = targetDate - now;
+      const gap = targetDate - new Date().getTime();
       if (gap > 0) {
         document.getElementById('d').innerText = Math.floor(gap / (1000 * 60 * 60 * 24));
         document.getElementById('h').innerText = Math.floor((gap % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
@@ -479,7 +376,6 @@
       }
     }, 1000);
 
-    // Floating Rose Petals & Gold Shimmer
     function startRosePetals() {
       const canvas = document.getElementById('petals-canvas');
       const ctx = canvas.getContext('2d');
@@ -487,39 +383,16 @@
       canvas.height = window.innerHeight;
       const items = [];
       const palette = ['#f7dc94', '#d95b72', '#f29cab', '#c6933b'];
-
-      for (let i = 0; i < 40; i++) {
-        items.push({
-          x: Math.random() * canvas.width,
-          y: Math.random() * canvas.height,
-          r: Math.random() * 5 + 3.5,
-          vy: Math.random() * 1.4 + 0.6,
-          vx: Math.random() * 1 - 0.5,
-          color: palette[Math.floor(Math.random() * palette.length)],
-          rot: Math.random() * Math.PI * 2
-        });
+      for (let i = 0; i < 35; i++) {
+        items.push({ x: Math.random() * canvas.width, y: Math.random() * canvas.height, r: Math.random() * 5 + 3, vy: Math.random() * 1.3 + 0.6, vx: Math.random() * 1 - 0.5, color: palette[Math.floor(Math.random() * palette.length)], rot: Math.random() * 6 });
       }
-
       function loop() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         items.forEach(p => {
-          ctx.save();
-          ctx.translate(p.x, p.y);
-          ctx.rotate(p.rot);
-          ctx.beginPath();
-          ctx.fillStyle = p.color;
-          ctx.ellipse(0, 0, p.r, p.r * 0.55, 0, 0, Math.PI * 2);
-          ctx.fill();
-          ctx.restore();
-
-          p.y += p.vy;
-          p.x += p.vx + Math.sin(p.y * 0.02) * 0.5;
-          p.rot += 0.02;
-
-          if (p.y > canvas.height) {
-            p.y = -10;
-            p.x = Math.random() * canvas.width;
-          }
+          ctx.save(); ctx.translate(p.x, p.y); ctx.rotate(p.rot);
+          ctx.beginPath(); ctx.fillStyle = p.color; ctx.ellipse(0, 0, p.r, p.r * 0.55, 0, 0, Math.PI * 2); ctx.fill(); ctx.restore();
+          p.y += p.vy; p.x += p.vx + Math.sin(p.y * 0.02) * 0.5; p.rot += 0.02;
+          if (p.y > canvas.height) { p.y = -10; p.x = Math.random() * canvas.width; }
         });
         requestAnimationFrame(loop);
       }
